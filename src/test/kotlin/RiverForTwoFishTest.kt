@@ -3,7 +3,7 @@ import Direction.SwimsRight
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class RiverTest {
+internal class RiverForTwoFishTest {
     @Test
     fun birdEatsTwoDeadFish() {
         assertEquals(emptyList(), River(listOf(Fish(0, SwimsRight), Fish(0, SwimsLeft))).survivors())
