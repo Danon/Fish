@@ -5,6 +5,11 @@ import kotlin.test.assertEquals
 
 internal class RiverTest {
     @Test
+    fun biggerFishShouldNotWin_inOppositeDirection_butPastEachOther() {
+        assertAllFishLive(listOf(Fish(4, SwimsLeft), Fish(3, SwimsRight)))
+    }
+
+    @Test
     fun biggerFishShouldWin_inOppositeDirection() {
         // given
         val fish = listOf(
@@ -40,6 +45,7 @@ internal class RiverTest {
     @Test
     fun shouldOneFishBeTheHighKing() {
         assertAllFishLive(listOf(Fish(0, SwimsLeft)))
+        assertAllFishLive(listOf(Fish(0, SwimsRight)))
     }
 
     @Test

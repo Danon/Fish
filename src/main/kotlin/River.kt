@@ -6,6 +6,9 @@ class River(private val fish: List<Fish>) {
         if (fish[0].direction == fish[1].direction) {
             return fish
         }
-        return listOf(fish.maxByOrNull { fish -> fish.strength }!!)
+        if (fish[0].strength > fish[1].strength) {
+            return listOf(fish[0], fish[1])
+        }
+        return listOf(fish[1])
     }
 }
