@@ -1,0 +1,9 @@
+# Project
+.idea/
+
+# Build
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
