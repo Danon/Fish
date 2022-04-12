@@ -1,1 +1,1 @@
-data class Fish(val strength: Int)
+data class Fish(val strength: Int, val direction: Direction)
