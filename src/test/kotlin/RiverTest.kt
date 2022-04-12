@@ -18,26 +18,36 @@ internal class RiverTest {
     }
 
     @Test
-    fun bothFishShouldLive_inTheSameDirection() {
-        // given
-        val fish = listOf(
-            Fish(3, SwimsRight),
-            Fish(4, SwimsRight)
+    fun bothFishShouldLive_inTheSameDirection_Right() {
+        assertAllFishLive(
+            listOf(
+                Fish(3, SwimsRight),
+                Fish(4, SwimsRight)
+            )
         )
-        // then
-        val survivors = River(fish).survivors()
-        // then
-        assertEquals(fish, survivors)
+    }
+
+    @Test
+    fun bothFishShouldLive_inTheSameDirection_Left() {
+        assertAllFishLive(
+            listOf(
+                Fish(3, SwimsLeft),
+                Fish(4, SwimsLeft)
+            )
+        )
     }
 
     @Test
     fun shouldOneFishBeTheHighKing() {
-        val fish = Fish(0, SwimsLeft)
-        assertEquals(listOf(fish), River(listOf(fish)).survivors())
+        assertAllFishLive(listOf(Fish(0, SwimsLeft)))
     }
 
     @Test
     fun emptyRiverShouldYieldNoSurvivors() {
         assertEquals(emptyList(), River(emptyList()).survivors())
+    }
+
+    private fun assertAllFishLive(fish: List<Fish>) {
+        assertEquals(fish, River(fish).survivors())
     }
 }
