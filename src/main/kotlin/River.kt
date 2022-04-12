@@ -11,23 +11,23 @@ class River(private val fish: List<Fish>) {
             for (fish_ in fish) {
                 if (fish_.direction == SwimsRight) { // fish goes right
                     temporaryStack.add(fish_);
-                } else { // fish goes left
-                    var fishIsLast = false;
-                    var wereEqual = false;
-                    while (temporaryStack.isNotEmpty()) {
-                        val stackFish = temporaryStack.last()
-                        if (stackFish.strength > fish_.strength) {
-                            fishIsLast = true;
-                            break;
-                        }
-                        if (stackFish.strength == fish_.strength) {
-                            wereEqual = true;
-                        }
-                        temporaryStack.removeLast();
+                    continue;
+                }
+                var fishWasEaten = false;
+                var fishAteEachOther = false;
+                while (temporaryStack.isNotEmpty()) {
+                    val stackFish = temporaryStack.last()
+                    if (stackFish.strength > fish_.strength) {
+                        fishWasEaten = true;
+                        break;
                     }
-                    if (!fishIsLast && !wereEqual) {
-                        survivors.add(fish_);
+                    if (stackFish.strength == fish_.strength) {
+                        fishAteEachOther = true;
                     }
+                    temporaryStack.removeLast();
+                }
+                if (!fishWasEaten && !fishAteEachOther) {
+                    survivors.add(fish_);
                 }
             }
             survivors.addAll(temporaryStack);
