@@ -1,4 +1,3 @@
-import Direction.SwimsLeft
 import Direction.SwimsRight
 
 class River(private val fish: List<Fish>) {
@@ -8,15 +7,31 @@ class River(private val fish: List<Fish>) {
         if (fish.size < 2) {
             survivors.addAll(fish)
         } else {
-            if (fish[0].direction == SwimsRight && fish[1].direction == SwimsLeft) {
-                if (fish[0].strength != fish[1].strength) {
-                    survivors.add(fish.maxByOrNull { it.strength }!!)
+            val temporaryStack = mutableListOf<Fish>();
+            for (fish_ in fish) {
+                if (fish_.direction == SwimsRight) { // fish goes right
+                    temporaryStack.add(fish_);
+                } else { // fish goes left
+                    var fishIsLast = false;
+                    var wereEqual = false;
+                    while (temporaryStack.isNotEmpty()) {
+                        val stackFish = temporaryStack.last()
+                        if (stackFish.strength > fish_.strength) {
+                            fishIsLast = true;
+                            break;
+                        }
+                        if (stackFish.strength == fish_.strength) {
+                            wereEqual = true;
+                        }
+                        temporaryStack.removeLast();
+                    }
+                    if (!fishIsLast && !wereEqual) {
+                        survivors.add(fish_);
+                    }
                 }
-            } else {
-                survivors.addAll(fish)
             }
+            survivors.addAll(temporaryStack);
         }
-
         return survivors
     }
 }
