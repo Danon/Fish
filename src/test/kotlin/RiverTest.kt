@@ -9,6 +9,12 @@ internal class RiverTest {
     }
 
     @Test
+    fun shouldOneFishBeTheHighKing() {
+        val fish = Fish(0)
+        assertEquals(listOf(fish), River(listOf(fish)).survivors())
+    }
+
+    @Test
     fun emptyRiverShouldYieldNoSurvivors() {
         assertEquals(emptyList(), River(emptyList()).survivors())
     }
