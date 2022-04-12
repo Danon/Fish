@@ -4,30 +4,30 @@ class River(private val fishes: List<Fish>) {
     fun survivors(): List<Fish> {
         val survivors = mutableListOf<Fish>()
 
-        val temporaryStack = mutableListOf<Fish>();
+        val oppositeDirection = mutableListOf<Fish>();
         for (fish in fishes) {
-            if (fish.direction == SwimsRight) { // fish goes right
-                temporaryStack.add(fish);
+            if (fish.direction == SwimsRight) {
+                oppositeDirection.add(fish);
                 continue;
             }
             var fishWasEaten = false;
             var fishAteEachOther = false;
-            while (temporaryStack.isNotEmpty()) {
-                val stackFish = temporaryStack.last()
-                if (stackFish.strength > fish.strength) {
+            while (oppositeDirection.isNotEmpty()) {
+                val nextFish = oppositeDirection.last()
+                if (nextFish.strength > fish.strength) {
                     fishWasEaten = true;
                     break;
                 }
-                if (stackFish.strength == fish.strength) {
+                if (nextFish.strength == fish.strength) {
                     fishAteEachOther = true;
                 }
-                temporaryStack.removeLast();
+                oppositeDirection.removeLast();
             }
             if (!fishWasEaten && !fishAteEachOther) {
                 survivors.add(fish);
             }
         }
-        survivors.addAll(temporaryStack);
+        survivors.addAll(oppositeDirection);
 
         return survivors
     }
