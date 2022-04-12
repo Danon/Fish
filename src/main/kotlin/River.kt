@@ -1,3 +1,5 @@
+import Direction.SwimsLeft
+
 class River(private val fish: List<Fish>) {
     fun survivors(): List<Fish> {
         if (fish.size < 2) {
@@ -6,9 +8,9 @@ class River(private val fish: List<Fish>) {
         if (fish[0].direction == fish[1].direction) {
             return fish
         }
-        if (fish[0].strength > fish[1].strength) {
-            return listOf(fish[0], fish[1])
+        if (fish[0].direction == SwimsLeft) {
+            return fish
         }
-        return listOf(fish[1])
+        return listOf(fish.maxByOrNull { it.strength }!!)
     }
 }
