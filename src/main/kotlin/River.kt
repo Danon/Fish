@@ -1,3 +1,4 @@
+import Direction.SwimsLeft
 import Direction.SwimsRight
 
 class River(private val fish: List<Fish>) {
@@ -5,7 +6,7 @@ class River(private val fish: List<Fish>) {
         if (fish.size < 2) {
             return fish
         }
-        if (fish[0].direction == SwimsRight && fish[0].direction != fish[1].direction) {
+        if (fish[0].direction == SwimsRight && fish[1].direction == SwimsLeft) {
             return listOf(fish.maxByOrNull { it.strength }!!)
         }
         return fish
