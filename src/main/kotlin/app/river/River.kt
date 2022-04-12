@@ -1,4 +1,6 @@
-import Direction.North
+package app.river
+
+import app.river.Direction.North
 
 class River(private val fishes: List<Fish>) {
     fun survivors(): List<Fish> {

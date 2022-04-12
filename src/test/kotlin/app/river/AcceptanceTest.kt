@@ -1,5 +1,7 @@
-import Direction.South
-import Direction.North
+package app.river
+
+import app.river.Direction.South
+import app.river.Direction.North
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
