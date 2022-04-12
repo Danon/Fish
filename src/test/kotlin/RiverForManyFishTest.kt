@@ -3,7 +3,7 @@ import Direction.North
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class RiverForThreeFishTest {
+internal class RiverForManyFishTest {
     @Test
     fun shouldAllFriendsFishLive() {
         // given
