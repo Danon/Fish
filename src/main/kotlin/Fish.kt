@@ -1,1 +1,1 @@
-class Fish
+data class Fish(val strength: Int)

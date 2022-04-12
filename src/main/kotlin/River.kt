@@ -1,5 +1,8 @@
-class River {
+class River(private val fish: List<Fish>) {
     fun survivors(): List<Fish> {
-        return emptyList()
+        if (fish.isEmpty()) {
+            return emptyList()
+        }
+        return listOf(fish.maxByOrNull { fish -> fish.strength }!!)
     }
 }
