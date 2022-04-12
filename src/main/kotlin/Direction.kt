@@ -1,3 +1,3 @@
 enum class Direction {
-    SwimsRight, SwimsLeft
+    North, South
 }

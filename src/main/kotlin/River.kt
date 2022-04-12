@@ -1,4 +1,4 @@
-import Direction.SwimsRight
+import Direction.North
 
 class River(private val fishes: List<Fish>) {
     fun survivors(): List<Fish> {
@@ -6,7 +6,7 @@ class River(private val fishes: List<Fish>) {
 
         val oppositeDirection = mutableListOf<Fish>();
         for (fish in fishes) {
-            if (fish.direction == SwimsRight) {
+            if (fish.direction == North) {
                 oppositeDirection.add(fish);
                 continue;
             }

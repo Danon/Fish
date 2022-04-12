@@ -1,32 +1,32 @@
-import Direction.SwimsLeft
-import Direction.SwimsRight
+import Direction.South
+import Direction.North
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 internal class RiverForTwoFishTest {
     @Test
     fun birdEatsTwoDeadFish() {
-        assertEquals(emptyList(), River(listOf(Fish(0, SwimsRight), Fish(0, SwimsLeft))).survivors())
-        assertEquals(emptyList(), River(listOf(Fish(3, SwimsRight), Fish(3, SwimsLeft))).survivors())
+        assertEquals(emptyList(), River(listOf(Fish(0, North), Fish(0, South))).survivors())
+        assertEquals(emptyList(), River(listOf(Fish(3, North), Fish(3, South))).survivors())
     }
 
     @Test
     fun biggerFishShouldNotWin_inOppositeDirection_butPastEachOther_bigLeft() {
-        assertAllFishLive(listOf(Fish(4, SwimsLeft), Fish(3, SwimsRight)))
-        assertAllFishLive(listOf(Fish(5, SwimsLeft), Fish(6, SwimsRight)))
+        assertAllFishLive(listOf(Fish(4, South), Fish(3, North)))
+        assertAllFishLive(listOf(Fish(5, South), Fish(6, North)))
     }
 
     @Test
     fun biggerFishShouldNotWin_inOppositeDirection_butPastEachOther_bigRight() {
-        assertAllFishLive(listOf(Fish(1, SwimsLeft), Fish(3, SwimsRight)))
-        assertAllFishLive(listOf(Fish(10, SwimsLeft), Fish(16, SwimsRight)))
+        assertAllFishLive(listOf(Fish(1, South), Fish(3, North)))
+        assertAllFishLive(listOf(Fish(10, South), Fish(16, North)))
     }
 
     @Test
     fun biggerFishShouldWin_inOppositeDirection_firstBigFish() {
         // given
-        val smallFish = Fish(3, SwimsRight)
-        val bigFish = Fish(4, SwimsLeft)
+        val smallFish = Fish(3, North)
+        val bigFish = Fish(4, South)
         // then
         val survivors = River(listOf(smallFish, bigFish)).survivors()
         // then
@@ -36,8 +36,8 @@ internal class RiverForTwoFishTest {
     @Test
     fun biggerFishShouldWin_inOppositeDirection_secondBigFish() {
         // given
-        val bigFish = Fish(9, SwimsRight)
-        val smallFish = Fish(6, SwimsLeft)
+        val bigFish = Fish(9, North)
+        val smallFish = Fish(6, South)
         // then
         val survivors = River(listOf(bigFish, smallFish)).survivors()
         // then
@@ -48,8 +48,8 @@ internal class RiverForTwoFishTest {
     fun bothFishShouldLive_inTheSameDirection_Right() {
         assertAllFishLive(
             listOf(
-                Fish(3, SwimsRight),
-                Fish(4, SwimsRight)
+                Fish(3, North),
+                Fish(4, North)
             )
         )
     }
@@ -58,16 +58,16 @@ internal class RiverForTwoFishTest {
     fun bothFishShouldLive_inTheSameDirection_Left() {
         assertAllFishLive(
             listOf(
-                Fish(3, SwimsLeft),
-                Fish(4, SwimsLeft)
+                Fish(3, South),
+                Fish(4, South)
             )
         )
     }
 
     @Test
     fun shouldOneFishBeTheHighKing() {
-        assertAllFishLive(listOf(Fish(0, SwimsLeft)))
-        assertAllFishLive(listOf(Fish(0, SwimsRight)))
+        assertAllFishLive(listOf(Fish(0, South)))
+        assertAllFishLive(listOf(Fish(0, North)))
     }
 
     @Test

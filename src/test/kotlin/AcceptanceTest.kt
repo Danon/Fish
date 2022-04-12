@@ -1,5 +1,5 @@
-import Direction.SwimsLeft
-import Direction.SwimsRight
+import Direction.South
+import Direction.North
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -14,18 +14,18 @@ internal class AcceptanceTest {
 
         // given
         val fish = listOf(
-            Fish(1, SwimsLeft),
-            Fish(5, SwimsLeft),
-            Fish(4, SwimsRight),
-            Fish(2, SwimsRight),
-            Fish(3, SwimsLeft),
-            Fish(3, SwimsLeft),
+            Fish(1, South),
+            Fish(5, South),
+            Fish(4, North),
+            Fish(2, North),
+            Fish(3, South),
+            Fish(3, South),
         )
         // then
         val expected = listOf(
-            Fish(1, SwimsLeft),
-            Fish(5, SwimsLeft),
-            Fish(4, SwimsRight)
+            Fish(1, South),
+            Fish(5, South),
+            Fish(4, North)
         )
         assertEquals(expected, River(fish).survivors())
     }
