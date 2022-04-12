@@ -63,6 +63,15 @@ Run file `Main.kt` as kotlin file from IntelliJ Idea:
 
 ### Usage from docker
 
+#### Clone repo
+
+```
+git clone git@github.com:Danon/Fish.git
+cd Fish/
+```
+
+#### Run application
+
 Using PowerShell
 
 ```ps
