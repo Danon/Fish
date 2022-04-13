@@ -25,14 +25,25 @@ internal class RiverForTwoFishTest {
     }
 
     @Test
-    fun biggerFishShouldWin_inOppositeDirection_firstBigFish() {
+    fun biggerFishShouldWin_inOppositeDirection_firstBigFish_South() {
         // given
         val smallFish = Fish(3, North)
         val bigFish = Fish(4, South)
         // then
         val survivors = River(listOf(smallFish, bigFish)).survivors()
         // then
-        assertEquals(listOf(bigFish), survivors)
+        assertEquals(listOf(Fish(7, South)), survivors)
+    }
+
+    @Test
+    fun biggerFishShouldWin_inOppositeDirection_firstBigFish_North() {
+        // given
+        val smallFish = Fish(4, North)
+        val bigFish = Fish(3, South)
+        // then
+        val survivors = River(listOf(smallFish, bigFish)).survivors()
+        // then
+        assertEquals(listOf(Fish(7, North)), survivors)
     }
 
     @Test
@@ -43,7 +54,7 @@ internal class RiverForTwoFishTest {
         // then
         val survivors = River(listOf(bigFish, smallFish)).survivors()
         // then
-        assertEquals(listOf(bigFish), survivors)
+        assertEquals(listOf(Fish(15, North)), survivors)
     }
 
     @Test

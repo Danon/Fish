@@ -1,7 +1,7 @@
 package app.river
 
-import app.river.Direction.South
 import app.river.Direction.North
+import app.river.Direction.South
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -23,7 +23,7 @@ internal class RiverForManyFishTest {
         val nemo = Fish(2, South)
         val dory = Fish(3, South)
         // then
-        assertEquals(listOf(shark), River(listOf(shark, nemo, dory)).survivors())
+        assertEquals(listOf(Fish(9, North)), River(listOf(shark, nemo, dory)).survivors())
     }
 
     @Test
@@ -33,7 +33,7 @@ internal class RiverForManyFishTest {
         val dory = Fish(3, North)
         val shark = Fish(4, South)
         // then
-        assertEquals(listOf(shark), River(listOf(nemo, dory, shark)).survivors())
+        assertEquals(listOf(Fish(9, South)), River(listOf(nemo, dory, shark)).survivors())
     }
 
     @Test
@@ -42,11 +42,11 @@ internal class RiverForManyFishTest {
         val nemo = Fish(0, South)
         val shark1 = Fish(4, North)
         val dory = Fish(3, South)
-        val shark2 = Fish(5, South)
+        val shark2 = Fish(10, South)
         val merlin = Fish(2, South)
         val fish = listOf(nemo, shark1, dory, shark2, merlin)
         // then
-        assertEquals(listOf(nemo, shark2, merlin), River(fish).survivors())
+        assertEquals(listOf(nemo, Fish(17, South), merlin), River(fish).survivors())
     }
 
     private fun assertAllFishLive(fish: List<Fish>) {

@@ -11,29 +11,36 @@ class River(private val fishes: List<Fish>) {
                 oppositeDirection.add(fish);
                 continue;
             }
-            val fishLives = eatOtherFishesOrDie(fish, oppositeDirection)
-            if (fishLives) {
-                survivors.add(fish);
-            }
+            val survivorFish = eatOtherFishesOrDie(fish, oppositeDirection)
+            survivorFish?.also { survivors.add(it); }
         }
         survivors.addAll(oppositeDirection);
         return survivors
     }
 
-    private fun eatOtherFishesOrDie(fish: Fish, otherFishes: MutableList<Fish>): Boolean {
+    private fun eatOtherFishesOrDie(fish: Fish, oppositeDirection: MutableList<Fish>): Fish? {
+        var realFishStrength = fish.strength;
         var fishWasEaten = false;
         var fishAteEachOther = false;
-        while (otherFishes.isNotEmpty()) {
-            val other = otherFishes.last()
-            if (other.strength > fish.strength) {
+        while (oppositeDirection.isNotEmpty()) {
+            val other = oppositeDirection.last()
+            if (other.strength > realFishStrength) {
                 fishWasEaten = true;
+                oppositeDirection.removeLast();
+                oppositeDirection.add(Fish(other.strength + realFishStrength, other.direction))
                 break;
             }
-            if (other.strength == fish.strength) {
+            if (other.strength == realFishStrength) {
                 fishAteEachOther = true;
+            } else {
+                realFishStrength += other.strength;
             }
-            otherFishes.removeLast();
+            oppositeDirection.removeLast();
         }
-        return !fishWasEaten && !fishAteEachOther
+        return if (!fishWasEaten && !fishAteEachOther) {
+            Fish(realFishStrength, fish.direction)
+        } else {
+            null
+        }
     }
-}
+};
